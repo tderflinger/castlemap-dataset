@@ -48,7 +48,7 @@ Curated from **[Wikidata](https://www.wikidata.org)** (CC0). Candidates are filt
 
 - GitHub: https://github.com/Flightmussy/castlemap-dataset
 - Hugging Face: https://huggingface.co/datasets/Flightmussy/castles-of-the-world
-- Kaggle: https://www.kaggle.com/datasets/albanius/castles-of-the-world-2400-castles-and-palaces
+- Kaggle: https://www.kaggle.com/datasets/flightmussy/castles-of-the-world
 - **Citable DOI (Zenodo): [10.5281/zenodo.21322359](https://doi.org/10.5281/zenodo.21322359)**
 
 ## Releases
