@@ -1,21 +1,21 @@
-# Castles of the World — 7,044 castles, fortresses & palaces
+# Castles of the World — 7,738 castles, fortresses & palaces
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21322359.svg)](https://doi.org/10.5281/zenodo.21322359)
 
-A curated, hand-checked dataset of the world's **7,044 great castles, fortresses, palaces and ruins across 141 countries** — every landmark verified to have exact coordinates, a real Wikimedia Commons photo and an English Wikipedia article.
+A curated, hand-checked dataset of the world's **7,738 great castles, fortresses, palaces and ruins across 141 countries** — every landmark verified to have exact coordinates, a real Wikimedia Commons photo and an English Wikipedia article.
 
-This is the exact dataset behind **[Castlemap](https://thecastlemap.com)**, a free interactive night-map of all 7,044 landmarks.
+This is the exact dataset behind **[Castlemap](https://thecastlemap.com)**, a free interactive night-map of all 7,738 landmarks.
 
 - 🗺️ Interactive map: https://thecastlemap.com
 - 📄 Dataset page & downloads: https://thecastlemap.com/data/
 - 🏆 Fame ranking (methodology): https://thecastlemap.com/castles/ranked/
-- 🤖 Live MCP server for AI agents: `https://thecastlemap.com/mcp` (Model Context Protocol, streamable HTTP, no key — tools: `search_castles`, `get_castle`, `castles_near`, `top_castles`, `list_countries`, `random_castle`)
+- 🤖 Live MCP server for AI agents: `https://thecastlemap.com/mcp` (Model Context Protocol, streamable HTTP, no key — tools: `search_castles`, `get_castle`, `castles_near`, `top_castles`, `list_countries`, `get_statistics`, `random_castle`)
 
 ## Files
 
 | File | Format | Contents |
 |---|---|---|
-| `castles.geojson` | GeoJSON FeatureCollection | 7,044 Point features with all properties |
+| `castles.geojson` | GeoJSON FeatureCollection | 7,738 Point features with all properties |
 | `castles.csv` | CSV (UTF-8, header row) | Same records, flat |
 
 ## Fields
@@ -27,18 +27,18 @@ This is the exact dataset behind **[Castlemap](https://thecastlemap.com)**, a fr
 | `category` | `castle` \| `fortress` \| `palace` \| `ruin` |
 | `country`, `iso` | Country name and ISO 3166-1 alpha-2 code |
 | `lat`, `lon` | WGS84 coordinates (verified) |
-| `year`, `century` | Founding year and century, where documented (5,302 of 7,044 carry a year) |
-| `year_approx` | Whether that year is an approximation rather than a documented date — `1`/`0` in the CSV, `true`/`false` in the GeoJSON. True for 1,378 records |
+| `year`, `century` | Founding year and century, where documented (5,727 of 7,738 carry a year) |
+| `year_approx` | Whether that year is an approximation rather than a documented date — `1`/`0` in the CSV, `true`/`false` in the GeoJSON. True for 1,445 records |
 | `wikipedia` | English Wikipedia article URL |
 | `image` | Wikimedia Commons photo URL |
 | `image_by` | Photographer, as credited on Commons — most of these licences require you to name them if you reuse the picture |
 | `image_licence` | The photo's licence (e.g. `CC BY-SA 4.0`, `Public domain`). Applies to the photograph only, never to this dataset |
 | `sitelinks` | Number of Wikipedia language editions covering the landmark |
 | `pageviews` | Wikipedia pageviews over the trailing 60 days, summed across every language edition that covers the landmark |
-| `fame_rank` | Global fame rank 1…7044 — a blend of Wikipedia language coverage (`sitelinks`) and readership (`pageviews`). Rank 1 = Palace of Versailles. [Methodology](https://thecastlemap.com/castles/ranked/) |
+| `fame_rank` | Global fame rank 1…7738 — a blend of Wikipedia language coverage (`sitelinks`) and readership (`pageviews`). Rank 1 = Palace of Versailles. [Methodology](https://thecastlemap.com/castles/ranked/) |
 | `url` | The landmark's page on thecastlemap.com |
 
-`image_by` and `image_licence` were added on 2026-08-08 and are present for 7,029 of the 7,044 records. CSV columns are appended, never reordered: the column order is a contract with everyone who has already cited the file.
+`image_by` and `image_licence` were added on 2026-08-08 and are present for 6,993 of the 7,738 records. CSV columns are appended, never reordered: the column order is a contract with everyone who has already cited the file.
 
 ## Provenance & method
 
@@ -52,6 +52,8 @@ Curated from **[Wikidata](https://www.wikidata.org)** (CC0). Candidates are filt
 - **Citable DOI (Zenodo): [10.5281/zenodo.21322359](https://doi.org/10.5281/zenodo.21322359)**
 
 ## Releases
+
+- **v2.1.0** (2026-08-24) — **7,044 → 7,738 landmarks**, still 141 countries; no schema change, so every column and its position is exactly as in v2.0.0. Two things drove the growth, and both came from readers rather than from a scheduled refresh. **A whole shelf of Wikidata was unreachable**: Blenheim Palace — a World Heritage Site and the eleventh most-read landmark in the atlas — was missing because Wikidata types it an *English country house*, not a palace, and Highclere the same, Kinloch Castle a *mansion*, Eltham Palace a *historic house museum*. None of those classes descends from castle, fortress, palace, château, fort, citadel or fortification, so no query could see them however famous they were; 49 landmarks across fifteen countries were recovered. Then **a Spanish reader counted Jaén's castles and found nine.** He was right, and the cause was a rule rather than a gap: the atlas admitted landmarks in national fame order, so a dense province lost every slot to Catalonia's better-read castles. Reading that province's admissible tier by hand took Jaén to 29, and the same correction applied outward added 645 landmarks across 57 countries. Category counts: 3,409 castles · 1,496 fortresses · 1,336 palaces · 1,497 ruins. 5,727 records now carry a founding year.
 
 - **v2.0.0** (2026-08-17) — **2,435 → 7,044 landmarks, 129 → 141 countries**, the largest expansion the dataset has had. It closes the gap that the previous release opened up between this file and the live atlas: the map had grown for a month while the published dataset stood still, so anyone downloading it was getting a third of the atlas. Thin countries were raised toward a per-country floor (Spain 500, Germany 475, France 456, Italy 416, Poland 360, England 315, Japan 296), whole classes that had been unreachable were admitted — the fortification superclass is now resolved globally rather than per country, which alone recovered 56 well-known fortifications — and Andean, Australian and Gulf sites were added from reader reports. Category counts: 3,180 castles · 1,453 fortresses · 1,024 palaces · 1,387 ruins. Four new fields: `year_approx`, `image_by`, `image_licence` and `url`; the CSV also carries `url`, which previously only the GeoJSON did, so a row can now be linked back to its page. Founding years were re-audited against each landmark's Wikipedia lead in eleven further languages.
 
