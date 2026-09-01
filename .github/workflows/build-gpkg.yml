@@ -1,0 +1,43 @@
+name: Build castlemap-dataset GeoPackage (.gpkg)
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/build-gpkg.yml
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install GDAL
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gdal-bin
+
+      - name: Convert castles.geojson to GeoPackage castles.gpkg
+        run: ogr2ogr -f GPKG -overwrite ./castles.gpkg ./castles.geojson
+
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: castles.gpkg
+          path: ./castles.gpkg
+
+#      - name: Create release
+#        uses: softprops/action-gh-release@v2
+#        with:
+#          tag_name: ${{ steps.tag.outputs.tag }}
+#          name: ${{ steps.tag.outputs.tag }}
+#          files: castles.gpkg
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#
