@@ -16,7 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        # checkout v6.1.0
+        uses: actions/checkout@d23441a
 
       - name: Install GDAL
         run: |
@@ -27,7 +28,8 @@ jobs:
         run: ogr2ogr -f GPKG -overwrite ./castles.gpkg ./castles.geojson
 
       - name: Archive artifacts
-        uses: actions/upload-artifact@v4
+        # upload-artifact v.7.0.1
+        uses: actions/upload-artifact@043fb46 
         with:
           name: castles.gpkg
           path: ./castles.gpkg
